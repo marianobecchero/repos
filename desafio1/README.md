@@ -1,4 +1,4 @@
-GUÍA DE UTILIZACIÓN DEL JOB
+DOCUMENTACIÓN Y GUÍA DE UTILIZACIÓN DEL JOB
 
 - En primer lugar, cumpliendo con las tareas de DevOps en el sistema en cuestión, he creado 3 grupos que conforman los departamentos solicitados: Contabilidad, Finanzas y Tencnología.
 - Luego pasé a la creación del job, comenzando por la definición de dos variables: LOGIN y PASSWORD. En la variable LOGIN voy a almacenar la concatenación del nombre y apellido para la creación del usuario y demás configuraciones que se necesiten hacer con esta variable. En la variable PASSWORD voy a guardar la contraseña generada de forma aleatoria para asignarla posteriormente al usuario.
@@ -7,6 +7,7 @@ GUÍA DE UTILIZACIÓN DEL JOB
     - Creación de usuario y asignamiento de grupo.
     - Generación de password temporal.
     - Visualización de password temporal
+
 
 CASO DE USO EXITOSO
 
