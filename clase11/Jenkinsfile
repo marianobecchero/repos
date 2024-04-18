@@ -2,12 +2,12 @@ pipeline {
     agent any
   
     stages {
-        stage() {
+        stage("permiso") {
             steps {
                 sh 'chmod +x main.sh'
             }
         }
-        stage() {
+        stage("ejecucion") {
             steps {
                 sh 'main.sh'
             }   
