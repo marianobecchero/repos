@@ -4,13 +4,11 @@ pipeline {
     stages {
         stage("permiso") {
             steps {
-                sh 'chmod +x main.sh'
-            }
-        }
-        stage("ejecucion") {
-            steps {
-                sh 'main.sh'
-            }   
+		script {
+	                sh 'chmod +x main.sh'
+	        	sh 'main.sh'
+		}            
+	   }   
         }
     }
 }
