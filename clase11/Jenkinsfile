@@ -5,9 +5,9 @@ pipeline {
         stage("permiso") {
             steps {
 		script {
-	                //sh 'chmod +x ./main.sh'
+	                sh 'chmod +x ./clase11/main.sh'
 			//sh 'main.sh'
-			sh "ls"
+			//sh "ls"
 		}            
 	   }   
         }
