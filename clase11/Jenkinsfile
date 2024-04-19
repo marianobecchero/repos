@@ -6,7 +6,7 @@ pipeline {
             steps {
 		script {
 	                sh 'chmod +x ./clase11/main.sh'
-			sh 'main.sh'
+			sh './clase11/main.sh'
 			//sh "ls"
 		}            
 	   }   
