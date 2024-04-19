@@ -5,7 +5,7 @@ pipeline {
         stage("permiso") {
             steps {
 		script {
-	                sh 'chmod +x main.sh'
+	                sh 'chmod +x ./main.sh'
 			sh 'main.sh'
 		}            
 	   }   
