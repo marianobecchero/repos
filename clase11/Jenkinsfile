@@ -1,0 +1,15 @@
+pipeline {
+    agent any
+  
+    stages {
+        stage("permiso") {
+            steps {
+		script {
+	                sh 'chmod +x ./clase11/main.sh'
+			sh './clase11/main.sh'
+			//sh "ls"
+		}            
+	   }   
+        }
+    }
+}
