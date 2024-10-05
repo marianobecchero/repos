@@ -1,0 +1,24 @@
+services:
+  db-server:
+    image: mongo:7.0
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mariano
+      MONGO_INITDB_ROOT_PASSWORD: becchero
+    volumes:
+      - mongodb-data:/data/db
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db-server
+    environment:
+      MONGO_DB_URI: mongodb://mariano:becchero@mongodb:27017/mydatabase
+      MONGO_DB_NAME: mydatabase
+      MONGO_DB_USER: mariano
+      MONGO_DB_PASS: becchero
+
+volumes:
+  mongodb-data:

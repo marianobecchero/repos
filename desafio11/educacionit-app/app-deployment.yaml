@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: educacionit-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: educacionit-app
+  template:
+    metadata:
+      labels:
+        app: educacionit-app
+    spec:
+      containers:
+        - name: educacionit-app
+          image: marianobecchero/educacionit-app:v1.0.0
+          env:
+            - name: MONGO_DB_NAME
+              value: "test"
+            - name: MONGO_INITDB_ROOT_USERNAME
+              value: "mariano"
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              value: "becchero"
+            - name: MONGO_DB_URI
+              value: "mongodb://mariano:becchero@db-server-service:27017"
+          ports:
+            - containerPort: 3000
+              protocol: TCP

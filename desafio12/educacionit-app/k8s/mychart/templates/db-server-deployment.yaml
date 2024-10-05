@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Values.mongoDB.name }}" #db-server
+spec:
+  replicas: {{ .Values.replicaCount }} #1
+  selector:
+    matchLabels:
+      app: "{{ .Values.mongoDB.name }}" #db-server
+  template:
+    metadata:
+      labels:
+        app: "{{ .Values.mongoDB.name }}" #db-server
+    spec:
+      containers:
+      - name: "{{ .Values.mongoDB.name }}" #db-server
+        image: mongo:7.0
+        ports:
+        - containerPort: {{ .Values.mongoDB.port }} #27017
+        env:
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          value: "{{ .Values.mongoDB.env.MONGO_INITDB_ROOT_PASSWORD }}" #becchero
+        - name: MONGO_INITDB_ROOT_USERNAME
+          value: "{{ .Values.mongoDB.env.MONGO_INITDB_ROOT_USERNAME }}" #mariano

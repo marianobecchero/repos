@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Chart.Name }}" #educacionit-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "{{ .Chart.Name }}" #educacionit-app
+  template:
+    metadata:
+      labels:
+        app: "{{ .Chart.Name }}" #educacionit-app
+    spec:
+      containers:
+        - name: "{{ .Chart.Name }}" #educacionit-app
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}" #marianobecchero/educacionit-app:v1.0.0
+          env:
+            - name: MONGO_DB_NAME
+              value: "{{ .Values.mongoDB.env.MONGO_DB_NAME }}" #test
+            - name: MONGO_INITDB_ROOT_USERNAME
+              value: "{{ .Values.mongoDB.env.MONGO_INITDB_ROOT_USERNAME }}" #mariano
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              value: "{{ .Values.mongoDB.env.MONGO_INITDB_ROOT_PASSWORD }}" #becchero
+            - name: MONGO_DB_URI
+              value: "{{ .Values.mongoDB.env.MONGO_DB_URI }}" #mongodb://mariano:becchero@db-server-service:27017
+          ports:
+            - containerPort: {{ .Values.service.port }} #3000
+              protocol: TCP

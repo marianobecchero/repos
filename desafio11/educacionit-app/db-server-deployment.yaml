@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db-server
+  template:
+    metadata:
+      labels:
+        app: db-server
+    spec:
+      containers:
+      - name: db-server
+        image: mongo:7.0
+        ports:
+        - containerPort: 27017
+        env:
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          value: "becchero"
+        - name: MONGO_INITDB_ROOT_USERNAME
+          value: "mariano"

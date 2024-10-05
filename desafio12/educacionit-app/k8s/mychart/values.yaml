@@ -1,0 +1,79 @@
+replicaCount: 1
+
+image:
+  repository: marianobecchero/educacionit-app
+  pullPolicy: IfNotPresent
+  tag: v1.0.0
+
+imagePullSecrets: []
+
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  automount: true
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+
+podLabels: {}
+
+podSecurityContext: {}
+
+securityContext: {}
+
+service:
+  type: ClusterIP
+  port: 3000
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  hosts:
+    - host: chart-example.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+
+resources: {}
+
+livenessProbe:
+  httpGet:
+    path: /
+    port: http
+readinessProbe:
+  httpGet:
+    path: /
+    port: http
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+
+volumes: []
+
+volumeMounts: []
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+mongoDB:
+  name: db-server
+  containerName: educacionit-app-db
+  volumeMountName: mongodb-data
+  portName: "27017"
+  port: 27017
+  env:
+    MONGO_INITDB_ROOT_USERNAME: "mariano"
+    MONGO_INITDB_ROOT_PASSWORD: "becchero"
+    MONGO_DB_NAME: "test"
+    MONGO_DB_URI: "mongodb://mariano:becchero@db-server-service:27017"
