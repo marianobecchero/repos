@@ -1,0 +1,31 @@
+vars_files:
+  - vars/vars-site.yml
+  
+tasks:
+  - name: Instalar servicio Apache
+    include_tasks: includes/apache/apache2-install.yml
+
+  - name: crear directorio para el sitio
+    include_tasks: includes/site/create-directory.yml
+
+  - name: copiar index.html al directorio del sitio
+    include_tasks: includes/site/copy-index.yml
+
+  - name: Configuracion del sitio apache
+    include_tasks: includes/apache/apache2-config.yml
+
+  - name: Activa el nuevo sitio
+    include_tasks: includes/site/active-site.yml
+
+  - name: Deshabilita el sitio default
+    include_tasks: includes/site/disable-site.yml
+
+  - name: Cambiar el e-mail del webmaster
+    include_tasks: includes/sitechange-email.yml
+
+handlers:
+  - name: Reload Apache
+    service:
+      name: apache2
+      state: reloaded
+    when: is_ubuntu

@@ -1,0 +1,7 @@
+- name: Configurando el sitio apache
+  template:
+    src: templates/ansible_site.conf.j2
+    dest: /etc/apache2/sites-available/ansible_site.conf
+  notify:
+    - Reload Apache
+  when: is_ubuntu
