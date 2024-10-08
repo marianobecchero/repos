@@ -1,31 +1,35 @@
-vars_files:
-  - vars/vars-site.yml
+---
+- name: Playbook de ejemplo
+  hosts: all
 
-tasks:
-  - name: Instalar servicio Apache
-    include_tasks: includes/apache/apache2-install.yml
+  vars_files:
+    - vars/vars-site.yml
 
-  - name: crear directorio para el sitio
-    include_tasks: includes/site/create-directory.yml
+  tasks:
+    - name: Instalar servicio Apache
+      include_tasks: includes/apache/apache2-install.yml
 
-  - name: copiar index.html al directorio del sitio
-    include_tasks: includes/site/copy-index.yml
+    - name: crear directorio para el sitio
+      include_tasks: includes/site/create-directory.yml
 
-  - name: Configuracion del sitio apache
-    include_tasks: includes/apache/apache2-config.yml
+    - name: copiar index.html al directorio del sitio
+      include_tasks: includes/site/copy-index.yml
 
-  - name: Activa el nuevo sitio
-    include_tasks: includes/site/active-site.yml
+    - name: Configuracion del sitio apache
+      include_tasks: includes/apache/apache2-config.yml
 
-  - name: Deshabilita el sitio default
-    include_tasks: includes/site/disable-site.yml
+    - name: Activa el nuevo sitio
+      include_tasks: includes/site/active-site.yml
 
-  - name: Cambiar el e-mail del webmaster
-    include_tasks: includes/site/change-email.yml
+    - name: Deshabilita el sitio default
+      include_tasks: includes/site/disable-site.yml
 
-handlers:
-  - name: Reload Apache
-    service:
-      name: apache2
-      state: reloaded
-    when: is_ubuntu
+    - name: Cambiar el e-mail del webmaster
+      include_tasks: includes/site/change-email.yml
+
+  handlers:
+    - name: Reload Apache
+      service:
+        name: apache2
+        state: reloaded
+      when: is_ubuntu
