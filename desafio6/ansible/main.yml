@@ -1,6 +1,6 @@
 vars_files:
   - vars/vars-site.yml
-  
+
 tasks:
   - name: Instalar servicio Apache
     include_tasks: includes/apache/apache2-install.yml
@@ -21,7 +21,7 @@ tasks:
     include_tasks: includes/site/disable-site.yml
 
   - name: Cambiar el e-mail del webmaster
-    include_tasks: includes/sitechange-email.yml
+    include_tasks: includes/site/change-email.yml
 
 handlers:
   - name: Reload Apache
